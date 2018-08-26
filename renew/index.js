@@ -12,7 +12,7 @@ module.exports = () => (context) => {
 
   msRestAzure.loginWithServicePrincipalSecret(clientId, clientSecret, tenant, (err, credentials) => {
     if (err) {
-      console.error(err);
+      context.error(err);
       context.done();
       return;
     }
@@ -21,7 +21,7 @@ module.exports = () => (context) => {
 
     client.webApps.listPublishingCredentials(resourceGroupName, appName, (err, profile) => {
       if (err) {
-        console.error(err);
+        context.error(err);
         context.done();
         return;
       }
@@ -31,7 +31,7 @@ module.exports = () => (context) => {
 
       request.post(scmUri + apiPath, (err, response, body) => {
         if (err) {
-          console.error(err);
+          context.error(err);
           context.done();
           return;
         }
@@ -40,19 +40,19 @@ module.exports = () => (context) => {
         const contentType = response.headers['content-type'].split(';')[0];
 
         if (statusCode !== 200 || contentType !== 'application/json') {
-          console.warn('Unknown/unsuccessful response from API.');
-          console.log(`Status Code: ${statusCode}, Content Type: ${contentType}`);
-          console.log(body.toString());
+          context.warn('Unknown/unsuccessful response from API.');
+          context.log(`Status Code: ${statusCode}, Content Type: ${contentType}`);
+          context.log(body.toString());
         }
 
         else {
           const renewed = JSON.parse(body.toString());
 
           if (renewed.length) {
-            console.log(`Successfully renewed ${renewed.length} certificate(s).`);
-            renewed.forEach(info => console.log(` - ${info.Host}`));
+            context.log(`Successfully renewed ${renewed.length} certificate(s).`);
+            renewed.forEach(info => context.log(` - ${info.Host}`));
           } else {
-            console.log('No certificates to renew.');
+            context.log('No certificates to renew.');
           }
         }
 
