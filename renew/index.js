@@ -13,7 +13,7 @@ module.exports = () => (context) => {
   msRestAzure.loginWithServicePrincipalSecret(clientId, clientSecret, tenant, (err, credentials) => {
     if (err) {
       context.error(err);
-      context.done();
+      context.done(err);
       return;
     }
 
@@ -22,7 +22,7 @@ module.exports = () => (context) => {
     client.webApps.listPublishingCredentials(resourceGroupName, appName, (err, profile) => {
       if (err) {
         context.error(err);
-        context.done();
+        context.done(err);
         return;
       }
 
@@ -32,7 +32,7 @@ module.exports = () => (context) => {
       request.post(scmUri + apiPath, (err, response, body) => {
         if (err) {
           context.error(err);
-          context.done();
+          context.done(err);
           return;
         }
 
