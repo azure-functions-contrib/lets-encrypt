@@ -1,6 +1,6 @@
 {
   "name": "@azure-functions-contrib/lets-encrypt",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": {
     "email": "git@jacobmarshall.co",
     "name": "Jacob Marshall",
