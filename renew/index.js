@@ -37,7 +37,7 @@ module.exports = () => (context) => {
         }
 
         const { statusCode } = response;
-        const contentType = headers['content-type'].split(';')[0];
+        const contentType = response.headers['content-type'].split(';')[0];
 
         if (statusCode !== 200 || contentType !== 'application/json') {
           console.warn('Unknown/unsuccessful response from API.');
