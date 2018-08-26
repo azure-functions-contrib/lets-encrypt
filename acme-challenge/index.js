@@ -29,13 +29,13 @@ module.exports = (options) => (context) => {
           status: 404,
           body: 'Not Found',
         };
-        context.done(err);
+        context.done();
       } else {
         context.res = {
           status: 401,
           body: 'Unauthorized',
         };
-        context.done(err);
+        context.done();
       }
     } else {
       fs.readFile(filePath, (err, data) => {
