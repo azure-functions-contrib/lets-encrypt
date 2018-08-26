@@ -14,5 +14,6 @@
     "azure-arm-website": "^4.0.0",
     "ms-rest-azure": "^2.5.7",
     "request": "^2.88.0"
-  }
+  },
+  "license": "MIT"
 }
