@@ -1,0 +1,18 @@
+{
+  "name": "@azure-functions-contrib/lets-encrypt",
+  "version": "0.0.0",
+  "author": {
+    "email": "git@jacobmarshall.co",
+    "name": "Jacob Marshall",
+    "url": "https://j.msh.al"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azure-functions-contrib/lets-encrypt.git"
+  },
+  "dependencies": {
+    "azure-arm-website": "^4.0.0",
+    "ms-rest-azure": "^2.5.7",
+    "request": "^2.88.0"
+  }
+}
