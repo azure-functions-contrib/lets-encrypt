@@ -15,5 +15,8 @@
     "ms-rest-azure": "^2.5.7",
     "request": "^2.88.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT"
 }
