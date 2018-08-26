@@ -25,31 +25,35 @@ module.exports = (options) => (context) => {
   fs.access(filePath, fs.constants.R_OK, (err) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        context.done(err, {
+        context.res = {
           status: 404,
           body: 'Not Found',
-        });
+        };
+        context.done(err);
       } else {
-        context.done(err, {
+        context.res = {
           status: 401,
           body: 'Unauthorized',
-        });
+        };
+        context.done(err);
       }
     } else {
       fs.readFile(filePath, (err, data) => {
         if (err) {
-          context.done(err, {
+          context.res = {
             status: 500,
             body: 'Internal Server Error',
-          });
+          };
+          context.done(err);
         } else {
-          context.done(null, {
+          context.res = {
             status: 200,
             headers: {
               'content-type': 'text/plain; charset=utf-8',
             },
             body: data.toString(),
-          });
+          };
+          context.done(null);
         }
       });
     }
